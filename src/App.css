@@ -1,0 +1,174 @@
+html,
+body {
+  overflow: auto; /* Allow scrolling */
+}
+
+.nav-icon {
+  width: 17px;
+  height: 17px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+.home-icon {
+  width: 17px;
+  height: 17px;
+  margin-right: 8px;
+  vertical-align: middle;
+  margin-left: 20px;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  padding: 0.7rem 2rem;
+  background-color: orangered;
+  position: fixed; /* Keep the navbar fixed */
+  z-index: 10; /* Ensure it's on top of other content */
+  width: 100%;
+ 
+  background: transparent;
+  backdrop-filter: blur(10px);
+ 
+  
+}
+
+.navbar-open {
+  padding: 0;
+}
+
+.menu-icon {
+  z-index: 11; /* Ensure menu icon is above other elements */
+  cursor: pointer;
+  display: none; /* Hide menu icon by default */
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  padding-top: 12.5px;
+  padding-left: 25px;
+  gap: 13px;
+  margin: 0;
+  display: flex;
+  color: white;
+  font-family: Inter, Helvetica, "Apple Color Emoji", "Segoe UI Emoji",
+    NotoColorEmoji, "Noto Color Emoji", "Segoe UI Symbol", "Android Emoji",
+    EmojiSymbols, -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue",
+    "Noto Sans", sans-serif;
+  font-size: 11px;
+  margin-bottom: 11px;
+}
+
+.navbar li {
+  margin-right: 50px; /* Space between items */
+  position: relative; /* For pseudo-element positioning */
+}
+
+.navbar a {
+  text-decoration: none;
+  color: #fff; /* Adjust to your desired color */
+  padding: 5px 0; /* Add padding for the underline */
+  display: flex; /* Ensure icons and text align properly */
+  transition: transform 0.3s ease; 
+  align-items: center; /* Center align text and icon */
+}
+
+.navbar a:hover{
+  transform: scale(1.1); /* Slightly enlarge the icon */
+  transition: transform 0.3s ease; /* Smooth zoom transition */
+}
+
+.navbar a .nav-icon{
+  width: 20px;
+  height: 20px;
+  margin-right: 8px; /* Space between icon and text */
+}
+
+a,
+NavLink {
+  text-decoration: none;
+  color: inherit;
+  font-weight: bold;
+}
+
+img {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+}
+
+/* Responsive styles for small screen */
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center nav items */
+    padding: 10px 0; /* Add some padding for spacing */
+   
+  }
+
+  nav a {
+    display: flex;
+    align-items: center; /* Align icon and text */
+    justify-content: flex-start; /* Left-align the content inside the link */
+    width: 100%; /* Take full width */
+    padding: 10px; /* Add padding around items */
+    text-align: left; /* Left-align the text */
+  }
+
+  /* Position the logo to the left */
+  nav a .nav-icon {
+    margin-right: 10px; /* Space between icon and text */
+  }
+
+  ul {
+    display: none; /* Hide the unordered list by default */
+    
+  }
+
+  .menu-icon {
+    display: flex; /* Show menu icon when in mobile view */
+    flex-direction: column; /* Stack items vertically */
+    height: 13.5px; /* Adjust height */
+    width: 24px; /* Adjust width */
+
+    margin-right: 90%; /* Align to the left */
+    margin-top: 16.5px; /* Adjust margin */
+    margin-bottom: 9px; /* Adjust margin */
+    position: relative;
+    bottom: 9.5px;
+    filter: invert();
+  
+  }
+
+  /* Show navigation items when the menu is open */
+  .open ul {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    width: 100%; /* Take full width */
+    justify-content: center; /* Center the icon */
+    align-items: center; /* Center the icon */
+    padding-top: 5px;
+    padding-left: 0;
+  }
+
+  /* Center the links when the menu is open */
+  .open li {
+    margin: 0.2rem 0; /* Space between items */
+    text-align: center; /* Center-align the entire link item */
+  }
+}
+
+/* For big screen */
+@media (min-width: 768px) {
+  nav {
+    height: 40px;
+  }
+}
+
+
+
+
+.git-image:hover {
+  transform: scale(1.1);
+}
