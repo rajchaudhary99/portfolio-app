@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Home.css";
 import pdfFile from "./Raj Vardhan Chaudhary'resume.pdf";
 import catImage from "../assets/finalbgs.webp";
@@ -107,15 +108,18 @@ const Home = () => {
                 <FiDownload className="button-icon" />
               </motion.button>
               
-              <motion.a 
-                href="Contactus" 
-                className="contact-button"
+              <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <span>CONTACT ME</span>
-                <FiArrowRight className="button-icon" />
-              </motion.a>
+                <Link 
+                  to="/contactus" 
+                  className="contact-button"
+                >
+                  <span>CONTACT ME</span>
+                  <FiArrowRight className="button-icon" />
+                </Link>
+              </motion.div>
             </div>
           </div>
 

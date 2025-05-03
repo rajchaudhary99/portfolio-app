@@ -7,16 +7,12 @@ const Modal = () => {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    // Check if the modal has been shown during this session
     const hasSeenModal = sessionStorage.getItem('hasSeenModal');
-
     if (!hasSeenModal) {
       const timer = setTimeout(() => {
         setOpen(true);
         setShow(true);
-      }, 2000); // Show the modal after 2 seconds
-
-      // Cleanup timer on unmount
+      }, 2000);
       return () => clearTimeout(timer);
     }
   }, []);
@@ -25,18 +21,27 @@ const Modal = () => {
     setOpen(false); 
     setTimeout(() => {
       setShow(false);
-      // Save a flag in sessionStorage to prevent showing the modal again during this session
-      sessionStorage.setItem('hasSeenModal', true);
-    }, 500);
+      sessionStorage.setItem('hasSeenModal', 'true');
+    }, 300);
   };
 
   return (
     <div>
-      <div className={`modal-overlay ${open ? "fade-in" : ""}`} style={{ display: show ? 'flex' : 'none' }}>
-        <div className={`modal-content ${open ? "slide-in" : ""}`}>
-          <img src={crossIcon} alt='Close' className='cross-button' onClick={handleClose} />
+      <div className={`modal-overlay ${open ? "fade-in" : "fade-out"}`} style={{ display: show ? 'flex' : 'none' }}>
+        <div className={`modal-content ${open ? "slide-in" : "slide-out"}`}>
+          <img 
+            src={crossIcon} 
+            alt='Close' 
+            className='cross-button' 
+            onClick={handleClose} 
+          />
           <h2 className='modal-heading'>Welcome to My Portfolio!</h2>
           <p className='modal-para'>I'm glad you're here. Explore my projects and skills!</p>
+          <div className="modal-footer">
+            <button className="modal-button" onClick={handleClose}>
+              Let's Explore
+            </button>
+          </div>
         </div>
       </div>
     </div>

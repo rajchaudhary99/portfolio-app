@@ -14,7 +14,6 @@ import NotFound from "./Custom Feature/NotFound";
 import StickyContact from "./Custom Feature/StickyContact";
 import "./App.css";
 
-
 // Lazy loading pages
 const Home = React.lazy(() => import("./page/Home"));
 const About = React.lazy(() => import("./page/Aboutus"));
@@ -26,65 +25,83 @@ const App = () => {
   const menuRef = useRef(null);
   const menuIconRef = useRef(null);
 
-  // Toggle the menu when the icon is clicked
   const toggleMenu = () => {
     setMenuOpen((prevState) => !prevState);
   };
 
-  // Close the menu if clicking outside of the menu or menu icon
   const handleClickOutside = (event) => {
     if (
-      menuRef.current &&//for nav bar
-      menuIconRef.current &&//for icon 
-      !menuRef.current.contains(event.target) && // If clicked outside the menu
-      !menuIconRef.current.contains(event.target) // And outside the menu icon
+      menuRef.current &&
+      menuIconRef.current &&
+      !menuRef.current.contains(event.target) &&
+      !menuIconRef.current.contains(event.target)
     ) {
-      setMenuOpen(false); // Close the menu
+      setMenuOpen(false);
     }
   };
 
   return (
     <div onClick={handleClickOutside} style={{ minHeight: "100vh" }}>
       <Router>
-        <nav style={{padding:0}} className={`navbar ${menuOpen ? "open" : ""}`} ref={menuRef}>
-
+        <nav className={`navbar ${menuOpen ? "open" : ""}`} ref={menuRef}>
           {/* Menu Icon */}
           <div ref={menuIconRef} className="menu-icon" onClick={toggleMenu}>
-            <img src={menuIcon} alt="Menu Icon" />
+            <img 
+              src={menuIcon} 
+              alt="Menu Icon" 
+              className={`menu-icon-img ${menuOpen ? "open" : ""}`}
+            />
           </div>
-
-         
 
           {/* Navigation Links */}
           <ul>
             <li>
-              <NavLink to="/" end  onClick={() => setMenuOpen(false)}>
-              <img src={homeIcon} alt="homeIcon" className="nav-icon"></img> HOME
+              <NavLink 
+                to="/" 
+                end 
+                onClick={() => setMenuOpen(false)}
+                className={({isActive}) => isActive ? 'active' : ''}
+              >
+                <img src={homeIcon} alt="homeIcon" className="nav-icon" />
+                <span className="nav-text">HOME</span>
               </NavLink>
             </li>
             <li>
-              <NavLink to="/Aboutus" className={({isActive})=>(isActive ? 'active' : '')} onClick={() => setMenuOpen(false)}>
-              <img src={aboutUsPng} alt="About Us" className="nav-icon" /> ABOUT
+              <NavLink 
+                to="/Aboutus" 
+                onClick={() => setMenuOpen(false)}
+                className={({isActive}) => isActive ? 'active' : ''}
+              >
+                <img src={aboutUsPng} alt="About Us" className="nav-icon" />
+                <span className="nav-text">ABOUT</span>
               </NavLink>
             </li>
             <li>
-              <NavLink to="/Myproject" className={({isActive})=>(isActive ? 'active' : '')} onClick={() => setMenuOpen(false)}>
-              <img src={projectPng} alt="Projects" className="nav-icon" /> PROJECT
+              <NavLink 
+                to="/Myproject" 
+                onClick={() => setMenuOpen(false)}
+                className={({isActive}) => isActive ? 'active' : ''}
+              >
+                <img src={projectPng} alt="Projects" className="nav-icon" />
+                <span className="nav-text">PROJECTS</span>
               </NavLink>
             </li>
             <li>
-              <NavLink to="/Contactus"  className={({isActive})=>(isActive ? 'active' : '')} onClick={() => setMenuOpen(false)}>
-              <img src={contactUsPng} alt="Contact Us" className="nav-icon" /> CONTACT
+              <NavLink 
+                to="/Contactus"  
+                onClick={() => setMenuOpen(false)}
+                className={({isActive}) => isActive ? 'active' : ''}
+              >
+                <img src={contactUsPng} alt="Contact Us" className="nav-icon" />
+                <span className="nav-text">CONTACT</span>
               </NavLink>
             </li>
           </ul>
         </nav>
 
-        {/* Social Media Icons */}
-       <StickyContact/>
+        <StickyContact/>
 
-        {/* Routes */}
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<div className="loading-spinner">Loading...</div>}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/Aboutus" element={<About />} />
@@ -94,7 +111,6 @@ const App = () => {
           </Routes>
         </Suspense>
       </Router>
-    
     </div>
   );
 };
